@@ -100,6 +100,7 @@ export class App {
     });
   }
 }
+```
 The payload you receive will be the event from Leaflet with one additional property `map` that is the instance of `Leaflet.map`.
 
 #### with-layer-control
