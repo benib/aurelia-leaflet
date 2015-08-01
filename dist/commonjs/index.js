@@ -6,5 +6,5 @@ Object.defineProperty(exports, '__esModule', {
 exports.configure = configure;
 
 function configure(aurelia) {
-  aurelia.globalizeResources('./hello-world');
+  aurelia.globalizeResources('./leaflet');
 }

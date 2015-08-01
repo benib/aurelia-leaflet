@@ -4,7 +4,7 @@ System.register([], function (_export) {
   _export('configure', configure);
 
   function configure(aurelia) {
-    aurelia.globalizeResources('./hello-world');
+    aurelia.globalizeResources('./leaflet');
   }
 
   return {
