@@ -14,6 +14,12 @@ export default class LayerFactory {
     let instance;
 
     switch (layer.type) {
+      case 'marker':
+        instance = this.getMarker(layer);
+        break;
+      case 'popup':
+        instance = this.getPopup(layer);
+        break;
       case 'tile':
         instance = this.getTile(layer);
         break;
@@ -47,6 +53,15 @@ export default class LayerFactory {
       case 'circleMarker':
         instance = this.getCircleMarker(layer);
         break;
+      case 'group':
+        instance = this.getLayerGroup(layer);
+        break;
+      case 'featureGroup':
+        instance = this.getFeatureGroup(layer);
+        break;
+      case 'geoJSON':
+        instance = this.getGeoJson(layer);
+        break;
       default:
         throw new AureliaLeafletException(`Layer type ${layer.type} not implemented`);
     }
@@ -57,11 +72,35 @@ export default class LayerFactory {
 
     if (layer.hasOwnProperty('events')) {
       for (let e of layer.events) {
-        instance.on(e.name, e.callback);
+        if (typeof instance.on === 'function') {
+          instance.on(e.name, e.callback);
+        }
       }
     }
 
     return instance;
+  }
+
+  getMarker(layer) {
+    if (!layer.hasOwnProperty('latLng')) {
+      throw new AureliaLeafletException('No latLng given for layer.type "marker"');
+    }
+    let marker = this.L.marker(layer.latLng, layer.options);
+    if (layer.hasOwnProperty('popupContent')) {
+      marker.bindPopup(layer.popupContent).openPopup();
+    }
+    return marker;
+  }
+
+  getPopup(layer) {
+    let popup = this.L.popup(layer.options);
+    if (layer.hasOwnProperty('content')) {
+      popup.setContent(layer.content);
+    }
+    if (layer.hasOwnProperty('latLng')) {
+      popup.setLatLng(layer.latLng);
+    }
+    return popup;
   }
 
   getTile(layer) {
@@ -149,5 +188,34 @@ export default class LayerFactory {
       throw new AureliaLeafletException('No latLng given for layer.type "circleMarker"');
     }
     return this.L.circleMarker(layer.latLng, layer.options);
+  }
+
+  getLayerGroup(layer) {
+    if (!layer.hasOwnProperty('layers')) {
+      throw new AureliaLeafletException('No layers given for layer.type "group"');
+    }
+    let layers = [];
+    for (let l of layer.layers) {
+      layers.push(this.getLayer(l));
+    }
+    return this.L.layerGroup(layers);
+  }
+
+  getFeatureGroup(layer) {
+    if (!layer.hasOwnProperty('layers')) {
+      throw new AureliaLeafletException('No layers given for layer.type "featureGroup"');
+    }
+    let layers = [];
+    for (let l of layer.layers) {
+      layers.push(this.getLayer(l));
+    }
+    return this.L.featureGroup(layers);
+  }
+
+  getGeoJson(layer) {
+    if (!layer.hasOwnProperty('data')) {
+      throw new AureliaLeafletException('No data property given for layer.type "geoJSON"');
+    }
+    return this.L.geoJson(layer.data, layer.options);
   }
 }
