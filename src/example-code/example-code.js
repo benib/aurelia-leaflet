@@ -22,7 +22,7 @@ export class ExampleCodeCustomElement {
   }
 
   jsFileChanged() {
-    this.httpClient.get(`/src/examples/${this.jsFile}`).then((response) => {
+    this.httpClient.get(`/aurelia-leaflet/src/examples/${this.jsFile}`).then((response) => {
       this.js = response.content;
       this.js = response.content.replace(/\/\/ demo[\s\S]*?\/\/ demoend/g, '');
       this.jsLoadedResolve();
@@ -30,7 +30,7 @@ export class ExampleCodeCustomElement {
   }
 
   htmlFileChanged() {
-    this.httpClient.get(`/src/examples/${this.htmlFile}`).then((response) => {
+    this.httpClient.get(`/aurelia-leaflet/src/examples/${this.htmlFile}`).then((response) => {
       this.html = response.content.replace(/<!-- demo -->[\s\S]*?<!-- demoend -->/g, '');
       this.htmlLoadedResolve();
     });
