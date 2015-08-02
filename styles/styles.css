@@ -1,0 +1,93 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *:.after {
+  box-sizing: inherit;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #444;
+}
+
+p {
+  margin: 10px 0;
+}
+
+a {
+  color: black;
+  text-decoration: underline;
+}
+
+.page-header {
+  border-bottom: 1px solid gray;
+  padding: 0 5px;
+  color: #222;
+}
+
+.page-header__title {
+  margin: 10px 0 5px 0;
+  font-size: 2rem;
+}
+
+.page-header__tagline {
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.nav-bar {
+  border-bottom: 1px solid lightgray;
+}
+
+.nav-bar a {
+  float: left;
+  display: inline-block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.nav-bar a:hover, .nav-bar a:focus {
+  text-decoration: underline;
+}
+
+.nav-bar a.active {
+  background: #444;
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  padding: 0 5px;
+}
+
+.content__sidebar {
+  width: 20%;
+  float: left;
+}
+
+.content__main {
+  width: 80%;
+  float: left;
+}
+
+.sidebar-nav {
+  padding-top: 10px;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 5px;
+}
+
+.aurelia-leaflet-map {
+  height: 500px;
+}
