@@ -2,6 +2,8 @@
 
 This is a plugin for [Aurelia](http://aurelia.io/) providing a CustomElement `<leaflet>`.
 
+Examples: http://benib.github.io/aurelia-leaflet/
+
 ## Usage
 
 ### Install
