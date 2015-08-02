@@ -1,7 +1,7 @@
 import {inject, useView} from 'aurelia-framework';
 
 @useView('./only-layers.html')
-export class Simple {
+export class BaseLayer {
   // demo
   jsFile = 'base-layer.js';
   htmlFile = 'only-layers.html';

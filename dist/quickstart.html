@@ -28,10 +28,8 @@
         export function configure(aurelia) {
           aurelia.use
             .standardConfiguration()
-            .developmentLogging()
+            .developmentLogging() 
             .plugin('benib/aurelia-leaflet');
-
-          aurelia.globalizeResources('./example-code/example-code');
 
           // this is with leaflet loaded from CDN
           aurelia.container.registerInstance('Leaflet', window.L);

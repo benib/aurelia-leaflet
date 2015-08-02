@@ -22,15 +22,14 @@ export class ExampleCodeCustomElement {
   }
 
   jsFileChanged() {
-    this.httpClient.get(`/aurelia-leaflet/src/examples/${this.jsFile}`).then((response) => {
-      this.js = response.content;
+    this.httpClient.get(`../src/examples/${this.jsFile}`).then((response) => {
       this.js = response.content.replace(/\/\/ demo[\s\S]*?\/\/ demoend/g, '');
       this.jsLoadedResolve();
     });
   }
 
   htmlFileChanged() {
-    this.httpClient.get(`/aurelia-leaflet/src/examples/${this.htmlFile}`).then((response) => {
+    this.httpClient.get(`../src/examples/${this.htmlFile}`).then((response) => {
       this.html = response.content.replace(/<!-- demo -->[\s\S]*?<!-- demoend -->/g, '');
       this.htmlLoadedResolve();
     });

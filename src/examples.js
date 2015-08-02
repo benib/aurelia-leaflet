@@ -8,6 +8,7 @@ export class ChildRouter{
     'marker-with-popup',
     'load-event',
     'controls',
+    'featureGroup'
   ];
 
   configureRouter(config, router) {

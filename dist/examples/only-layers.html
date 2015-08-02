@@ -1,4 +1,5 @@
 <template>
   <leaflet map-options.bind="mapOptions" layers.bind="layers"></leaflet>
+  <div if.bind="hasConsoleOutput">Check to console for output</div>
   <!-- demo --><example-code js-file.bind="jsFile" html-file.bind="htmlFile"></example-code><!-- demoend -->
 </template>
