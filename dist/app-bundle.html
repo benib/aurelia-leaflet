@@ -1,0 +1,67 @@
+<template id="app.html!view">
+  <nav class="nav-bar clearfix">
+    <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" href.bind="row.href">${row.title}</a>
+  </nav>
+  <section class="content">
+    <router-view></router-view>
+  </section>
+</template>
+<template id="examples.html!view">
+  <div class="clearfix">
+    <div class="content__sidebar">
+      <nav class="sidebar-nav">
+        <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" href.bind="row.href">${row.title}</a>
+      </nav>
+    </div>
+    <main class="content__main">
+      <router-view></router-view>
+    </main>
+  </div>
+</template>
+<template id="quickstart.html!view">
+  <section ref="container">
+    <h3>Install</h3>
+    <p>First install aurelia-leaflet package:</p>
+    <pre>      <code class="bash">
+      jspm install github:benib/aurelia-leaflet
+      </code>
+    </pre>
+
+    <p>Either add leaflet from cdn to your page before aurelia loads</p>
+    <pre>      <code class="html">
+        &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/0.7.3/leaflet.css"&gt;
+        &lt;script src="https://cdn.jsdelivr.net/leaflet/0.7.3/leaflet.js"&gt;&lt;/script&gt;
+      </code>
+    </pre>
+    <p>Or install leaflet with jspm</p>
+    <pre>      <code class="bash">
+      jspm install leaflet
+      </code>
+    </pre>
+    <p>And then import it in your aurelia app configuration</p>
+    <p>Register the plugin in your aurelia app configuration and register an instance of Leaflet in the DI Container</p>
+    <pre>      <code class="js">
+        export function configure(aurelia) {
+          aurelia.use
+            .standardConfiguration()
+            .developmentLogging()
+            .plugin('benib/aurelia-leaflet');
+
+          aurelia.globalizeResources('./example-code/example-code');
+
+          // this is with leaflet loaded from CDN
+          aurelia.container.registerInstance('Leaflet', window.L);
+
+          aurelia.start().then(a =&gt; a.setRoot());
+        }
+      </code>
+    </pre>
+    <p>Now you are ready to use it like this</p>
+    <pre>      <code class="html">
+        &lt;leaflet&gt;&lt;/leaflet&gt;
+      </code>
+    </pre>
+    <p>Go, see <a route-href="route: examples;">some examples over here</a></p>
+    <leaflet></leaflet>
+  </section>
+</template>
