@@ -77,7 +77,7 @@ Layers is an object with information about the layers you want on your map. When
 ```
 Alright, this gives you a one baseLayer with tiles from openstreetmap.org. Note that the layers are divided in base and overlay layers. Every Layer needs to have an `id` property. This `id` is used as the key in the LayersControl, if you add one. If not given, it is set to the `url`. If no `url` is given (some layers don't have one), an exception is thrown.
 
-Note that there is a `type` property. `"tile"` is the default value and could be omitted. The other types available are: `marker`, `popup`, `wms`, `canvas`, `imageOverlay`, `polyline`, `multiPolyline`, `polygone`, `multiPolygon`, `rectangle`, `circle`, `circleMarker`, `LayerGroup`, `FeatureGroup` and `GeoJSON` . If you know Leaflet, you see that these are all the Layers available in Leaflet. They are documented here: http://leafletjs.com/reference.html. The options property of your layer config will get passed to the respective constructor for the given layer type.
+Note that there is a `type` property. `"tile"` is the default value and could be omitted. The other types available are: `marker`, `popup`, `wms`, `canvas`, `imageOverlay`, `polyline`, `multiPolyline`, `polygone`, `multiPolygon`, `rectangle`, `circle`, `circleMarker`, `layerGroup`, `featureGroup` and `geoJSON`. If you know Leaflet, you see that these are all the Layers available in Leaflet. They are documented here: http://leafletjs.com/reference.html. The options property of your layer config will get passed to the respective constructor for the given layer type.
 
 For more information on what to you need to configure either read the leaflet docs for these layers and guess what you need to configure, or read `src/helpers/layer-factory.js`.
 
