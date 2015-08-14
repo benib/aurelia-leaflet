@@ -13,6 +13,14 @@ export class GeoJSON {
     this.http = httpClient;
   }
 
+  mapOptions = {
+    center: {
+      lat: 47.3686498,
+      lng: 8.53918250
+    },
+    zoomLevel: 11
+  };
+
   activate() {
     this.http.fetch("//benib.github.io/aurelia-leaflet/data/bikepumps.json")
       .then(response => {
