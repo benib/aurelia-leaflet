@@ -88,6 +88,6 @@ a {
   padding: 5px;
 }
 
-.aurelia-leaflet-map {
+.leaflet-container {
   height: 500px;
 }

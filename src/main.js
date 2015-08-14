@@ -6,9 +6,7 @@ export function configure(aurelia) {
     .developmentLogging()
     .plugin('benib/aurelia-leaflet');
 
-  aurelia.globalizeResources('./example-code/example-code');
-
-  aurelia.container.registerInstance('Leaflet', window.L);
+  aurelia.use.globalResources('example-code/example-code');
 
   aurelia.start().then(a => a.setRoot());
 }

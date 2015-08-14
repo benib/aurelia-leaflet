@@ -1,5 +1,5 @@
 import {inject, bindable} from 'aurelia-framework'
-import {HttpClient} from 'aurelia-http-client';
+import {HttpClient} from 'aurelia-fetch-client';
 
 @inject(HttpClient)
 export class ExampleCodeCustomElement {
@@ -22,17 +22,21 @@ export class ExampleCodeCustomElement {
   }
 
   jsFileChanged() {
-    this.httpClient.get(`./src/examples/${this.jsFile}`).then((response) => {
-      this.js = response.content.replace(/\/\/ demo[\s\S]*?\/\/ demoend/g, '');
-      this.jsLoadedResolve();
-    });
+    this.httpClient.fetch(`./src/examples/${this.jsFile}`)
+      .then(response => response.text())
+      .then(text => {
+        this.js = text.replace(/\/\/ demo[\s\S]*?\/\/ demoend/g, '');
+        this.jsLoadedResolve();
+      });
   }
 
   htmlFileChanged() {
-    this.httpClient.get(`./src/examples/${this.htmlFile}`).then((response) => {
-      this.html = response.content.replace(/<!-- demo -->[\s\S]*?<!-- demoend -->/g, '');
-      this.htmlLoadedResolve();
-    });
+    this.httpClient.fetch(`./src/examples/${this.htmlFile}`)
+      .then(response => response.text())
+      .then(text => {
+        this.html = text.replace(/<!-- demo -->[\s\S]*?<!-- demoend -->/g, '');
+        this.htmlLoadedResolve();
+      });
   }
 
   attached() {

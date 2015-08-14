@@ -8,7 +8,8 @@ export class ChildRouter{
     'marker-with-popup',
     'load-event',
     'controls',
-    'featureGroup'
+    'featureGroup',
+    'geojson'
   ];
 
   configureRouter(config, router) {

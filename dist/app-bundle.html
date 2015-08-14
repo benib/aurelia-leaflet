@@ -27,19 +27,12 @@
       </code>
     </pre>
 
-    <p>Either add leaflet from cdn to your page before aurelia loads</p>
+    <p>Add the leaflet css to your page. Or use another way to make sure Leaflets CSS is loaded</p>
     <pre>      <code class="html">
         &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/0.7.3/leaflet.css"&gt;
-        &lt;script src="https://cdn.jsdelivr.net/leaflet/0.7.3/leaflet.js"&gt;&lt;/script&gt;
       </code>
     </pre>
-    <p>Or install leaflet with jspm</p>
-    <pre>      <code class="bash">
-      jspm install leaflet
-      </code>
-    </pre>
-    <p>And then import it in your aurelia app configuration</p>
-    <p>Register the plugin in your aurelia app configuration and register an instance of Leaflet in the DI Container</p>
+    <p>Register the plugin in your aurelia app configuration</p>
     <pre>      <code class="js">
         export function configure(aurelia) {
           aurelia.use
@@ -47,10 +40,14 @@
             .developmentLogging() 
             .plugin('benib/aurelia-leaflet');
 
-          // this is with leaflet loaded from CDN
-          aurelia.container.registerInstance('Leaflet', window.L);
-
           aurelia.start().then(a =&gt; a.setRoot());
+        }
+      </code>
+    </pre>
+    <p>make sure you have some CSS to give the map a height somehow. Simplest way is probably this:</p>
+    <pre>      <code class="css">
+        .leaflet-container {
+          height: 500px;
         }
       </code>
     </pre>
