@@ -14,7 +14,7 @@ export class GeoJSON {
   }
 
   activate() {
-    this.http.fetch("/data/bikepumps.json")
+    this.http.fetch("../../data/bikepumps.json")
       .then(response => {
         return response.json();
       })
