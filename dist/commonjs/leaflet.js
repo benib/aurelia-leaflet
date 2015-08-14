@@ -53,27 +53,18 @@ var LeafletCustomElement = (function () {
     decorators: [_aureliaFramework.bindable],
     initializer: null,
     enumerable: true
-  }], null, _instanceInitializers);
+  }], [{
+    key: 'inject',
+    value: ['Leaflet', _aureliaEventAggregator.EventAggregator, Element],
+    enumerable: true
+  }], _instanceInitializers);
 
   function LeafletCustomElement(Leaflet, EventAggregator, Element) {
     var _this = this;
 
     _classCallCheck(this, _LeafletCustomElement);
 
-    _defineDecoratedPropertyDescriptor(this, 'layers', _instanceInitializers);
-
-    _defineDecoratedPropertyDescriptor(this, 'mapEvents', _instanceInitializers);
-
-    _defineDecoratedPropertyDescriptor(this, 'mapOptions', _instanceInitializers);
-
-    _defineDecoratedPropertyDescriptor(this, 'withLayerControl', _instanceInitializers);
-
-    _defineDecoratedPropertyDescriptor(this, 'withScaleControl', _instanceInitializers);
-
-    this.attachedLayers = {
-      base: {},
-      overlay: {}
-    };
+    this.__initializeProperties();
 
     this.L = Leaflet;
     this.eventAggregator = EventAggregator;
@@ -419,10 +410,28 @@ var LeafletCustomElement = (function () {
       }
       return id;
     }
+  }, {
+    key: '__initializeProperties',
+    value: function __initializeProperties() {
+      _defineDecoratedPropertyDescriptor(this, 'layers', _instanceInitializers);
+
+      _defineDecoratedPropertyDescriptor(this, 'mapEvents', _instanceInitializers);
+
+      _defineDecoratedPropertyDescriptor(this, 'mapOptions', _instanceInitializers);
+
+      _defineDecoratedPropertyDescriptor(this, 'withLayerControl', _instanceInitializers);
+
+      _defineDecoratedPropertyDescriptor(this, 'withScaleControl', _instanceInitializers);
+
+      this.attachedLayers = {
+        base: {},
+        overlay: {}
+      };
+    }
   }], null, _instanceInitializers);
 
   var _LeafletCustomElement = LeafletCustomElement;
-  LeafletCustomElement = (0, _aureliaFramework.inject)('Leaflet', _aureliaEventAggregator.EventAggregator, Element)(LeafletCustomElement) || LeafletCustomElement;
+  LeafletCustomElement = (0, _aureliaFramework.useView)('./leaflet.html')(LeafletCustomElement) || LeafletCustomElement;
   LeafletCustomElement = (0, _aureliaFramework.customElement)('leaflet')(LeafletCustomElement) || LeafletCustomElement;
   return LeafletCustomElement;
 })();

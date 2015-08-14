@@ -1,7 +1,7 @@
 System.register(['aurelia-framework', 'aurelia-event-aggregator', './aurelia-leaflet-exceptions', './leaflet-defaults', './helpers/layer-factory'], function (_export) {
   'use strict';
 
-  var inject, customElement, bindable, EventAggregator, AureliaLeafletException, defaultMapOptions, defaultLayers, LayerFactory, LeafletCustomElement;
+  var customElement, useView, bindable, EventAggregator, AureliaLeafletException, defaultMapOptions, defaultLayers, LayerFactory, LeafletCustomElement;
 
   var _createDecoratedClass = (function () { function defineProperties(target, descriptors, initializers) { for (var i = 0; i < descriptors.length; i++) { var descriptor = descriptors[i]; var decorators = descriptor.decorators; var key = descriptor.key; delete descriptor.key; delete descriptor.decorators; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor || descriptor.initializer) descriptor.writable = true; if (decorators) { for (var f = 0; f < decorators.length; f++) { var decorator = decorators[f]; if (typeof decorator === 'function') { descriptor = decorator(target, key, descriptor) || descriptor; } else { throw new TypeError('The decorator for method ' + descriptor.key + ' is of the invalid type ' + typeof decorator); } } if (descriptor.initializer !== undefined) { initializers[key] = descriptor; continue; } } Object.defineProperty(target, key, descriptor); } } return function (Constructor, protoProps, staticProps, protoInitializers, staticInitializers) { if (protoProps) defineProperties(Constructor.prototype, protoProps, protoInitializers); if (staticProps) defineProperties(Constructor, staticProps, staticInitializers); return Constructor; }; })();
 
@@ -11,8 +11,8 @@ System.register(['aurelia-framework', 'aurelia-event-aggregator', './aurelia-lea
 
   return {
     setters: [function (_aureliaFramework) {
-      inject = _aureliaFramework.inject;
       customElement = _aureliaFramework.customElement;
+      useView = _aureliaFramework.useView;
       bindable = _aureliaFramework.bindable;
     }, function (_aureliaEventAggregator) {
       EventAggregator = _aureliaEventAggregator.EventAggregator;
@@ -54,27 +54,18 @@ System.register(['aurelia-framework', 'aurelia-event-aggregator', './aurelia-lea
           decorators: [bindable],
           initializer: null,
           enumerable: true
-        }], null, _instanceInitializers);
+        }], [{
+          key: 'inject',
+          value: ['Leaflet', EventAggregator, Element],
+          enumerable: true
+        }], _instanceInitializers);
 
         function LeafletCustomElement(Leaflet, EventAggregator, Element) {
           var _this = this;
 
           _classCallCheck(this, _LeafletCustomElement);
 
-          _defineDecoratedPropertyDescriptor(this, 'layers', _instanceInitializers);
-
-          _defineDecoratedPropertyDescriptor(this, 'mapEvents', _instanceInitializers);
-
-          _defineDecoratedPropertyDescriptor(this, 'mapOptions', _instanceInitializers);
-
-          _defineDecoratedPropertyDescriptor(this, 'withLayerControl', _instanceInitializers);
-
-          _defineDecoratedPropertyDescriptor(this, 'withScaleControl', _instanceInitializers);
-
-          this.attachedLayers = {
-            base: {},
-            overlay: {}
-          };
+          this.__initializeProperties();
 
           this.L = Leaflet;
           this.eventAggregator = EventAggregator;
@@ -420,10 +411,28 @@ System.register(['aurelia-framework', 'aurelia-event-aggregator', './aurelia-lea
             }
             return id;
           }
+        }, {
+          key: '__initializeProperties',
+          value: function __initializeProperties() {
+            _defineDecoratedPropertyDescriptor(this, 'layers', _instanceInitializers);
+
+            _defineDecoratedPropertyDescriptor(this, 'mapEvents', _instanceInitializers);
+
+            _defineDecoratedPropertyDescriptor(this, 'mapOptions', _instanceInitializers);
+
+            _defineDecoratedPropertyDescriptor(this, 'withLayerControl', _instanceInitializers);
+
+            _defineDecoratedPropertyDescriptor(this, 'withScaleControl', _instanceInitializers);
+
+            this.attachedLayers = {
+              base: {},
+              overlay: {}
+            };
+          }
         }], null, _instanceInitializers);
 
         var _LeafletCustomElement = LeafletCustomElement;
-        LeafletCustomElement = inject('Leaflet', EventAggregator, Element)(LeafletCustomElement) || LeafletCustomElement;
+        LeafletCustomElement = useView('./leaflet.html')(LeafletCustomElement) || LeafletCustomElement;
         LeafletCustomElement = customElement('leaflet')(LeafletCustomElement) || LeafletCustomElement;
         return LeafletCustomElement;
       })();

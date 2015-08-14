@@ -4,7 +4,7 @@ System.register([], function (_export) {
   _export('configure', configure);
 
   function configure(aurelia) {
-    aurelia.globalizeResources('./leaflet');
+    aurelia.globalResources('leaflet');
   }
 
   return {
