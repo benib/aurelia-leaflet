@@ -3,8 +3,8 @@ System.register([], function (_export) {
 
   _export('configure', configure);
 
-  function configure(aurelia) {
-    aurelia.globalResources('leaflet');
+  function configure(frameworkConfig) {
+    frameworkConfig.globalResources('leaflet');
   }
 
   return {

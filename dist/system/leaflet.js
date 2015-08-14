@@ -1,7 +1,7 @@
-System.register(['aurelia-framework', 'aurelia-event-aggregator', './aurelia-leaflet-exceptions', './leaflet-defaults', './helpers/layer-factory'], function (_export) {
+System.register(['aurelia-framework', 'aurelia-event-aggregator', './aurelia-leaflet-exceptions', './leaflet-defaults', './helpers/layer-factory', 'leaflet'], function (_export) {
   'use strict';
 
-  var customElement, useView, bindable, EventAggregator, AureliaLeafletException, defaultMapOptions, defaultLayers, LayerFactory, LeafletCustomElement;
+  var customElement, useView, bindable, EventAggregator, AureliaLeafletException, defaultMapOptions, defaultLayers, LayerFactory, Leaflet, LeafletCustomElement;
 
   var _createDecoratedClass = (function () { function defineProperties(target, descriptors, initializers) { for (var i = 0; i < descriptors.length; i++) { var descriptor = descriptors[i]; var decorators = descriptor.decorators; var key = descriptor.key; delete descriptor.key; delete descriptor.decorators; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor || descriptor.initializer) descriptor.writable = true; if (decorators) { for (var f = 0; f < decorators.length; f++) { var decorator = decorators[f]; if (typeof decorator === 'function') { descriptor = decorator(target, key, descriptor) || descriptor; } else { throw new TypeError('The decorator for method ' + descriptor.key + ' is of the invalid type ' + typeof decorator); } } if (descriptor.initializer !== undefined) { initializers[key] = descriptor; continue; } } Object.defineProperty(target, key, descriptor); } } return function (Constructor, protoProps, staticProps, protoInitializers, staticInitializers) { if (protoProps) defineProperties(Constructor.prototype, protoProps, protoInitializers); if (staticProps) defineProperties(Constructor, staticProps, staticInitializers); return Constructor; }; })();
 
@@ -23,6 +23,8 @@ System.register(['aurelia-framework', 'aurelia-event-aggregator', './aurelia-lea
       defaultLayers = _leafletDefaults.defaultLayers;
     }, function (_helpersLayerFactory) {
       LayerFactory = _helpersLayerFactory['default'];
+    }, function (_leaflet) {
+      Leaflet = _leaflet['default'];
     }],
     execute: function () {
       LeafletCustomElement = (function () {
@@ -56,7 +58,7 @@ System.register(['aurelia-framework', 'aurelia-event-aggregator', './aurelia-lea
           enumerable: true
         }], [{
           key: 'inject',
-          value: ['Leaflet', EventAggregator, Element],
+          value: [Leaflet, EventAggregator, Element],
           enumerable: true
         }], _instanceInitializers);
 

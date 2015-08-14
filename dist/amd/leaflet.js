@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-framework', 'aurelia-event-aggregator', './aurelia-leaflet-exceptions', './leaflet-defaults', './helpers/layer-factory'], function (exports, _aureliaFramework, _aureliaEventAggregator, _aureliaLeafletExceptions, _leafletDefaults, _helpersLayerFactory) {
+define(['exports', 'aurelia-framework', 'aurelia-event-aggregator', './aurelia-leaflet-exceptions', './leaflet-defaults', './helpers/layer-factory', 'leaflet'], function (exports, _aureliaFramework, _aureliaEventAggregator, _aureliaLeafletExceptions, _leafletDefaults, _helpersLayerFactory, _leaflet) {
   'use strict';
 
   Object.defineProperty(exports, '__esModule', {
@@ -14,6 +14,8 @@ define(['exports', 'aurelia-framework', 'aurelia-event-aggregator', './aurelia-l
   function _defineDecoratedPropertyDescriptor(target, key, descriptors) { var _descriptor = descriptors[key]; if (!_descriptor) return; var descriptor = {}; for (var _key in _descriptor) descriptor[_key] = _descriptor[_key]; descriptor.value = descriptor.initializer ? descriptor.initializer.call(target) : undefined; Object.defineProperty(target, key, descriptor); }
 
   var _LayerFactory = _interopRequireDefault(_helpersLayerFactory);
+
+  var _Leaflet = _interopRequireDefault(_leaflet);
 
   var LeafletCustomElement = (function () {
     var _instanceInitializers = {};
@@ -46,7 +48,7 @@ define(['exports', 'aurelia-framework', 'aurelia-event-aggregator', './aurelia-l
       enumerable: true
     }], [{
       key: 'inject',
-      value: ['Leaflet', _aureliaEventAggregator.EventAggregator, Element],
+      value: [_Leaflet['default'], _aureliaEventAggregator.EventAggregator, Element],
       enumerable: true
     }], _instanceInitializers);
 

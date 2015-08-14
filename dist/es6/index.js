@@ -1,3 +1,3 @@
-export function configure(aurelia) {
-  aurelia.globalResources('leaflet');
+export function configure(frameworkConfig) {
+  frameworkConfig.globalResources('leaflet');
 }

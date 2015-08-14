@@ -30,5 +30,6 @@
     "lib": "dist/amd"
   },
   "dependencies": {
+    "leaflet": "Leaflet/Leaflet@^0.7.3"
   }
 }

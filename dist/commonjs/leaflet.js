@@ -24,6 +24,10 @@ var _helpersLayerFactory = require('./helpers/layer-factory');
 
 var _helpersLayerFactory2 = _interopRequireDefault(_helpersLayerFactory);
 
+var _leaflet = require('leaflet');
+
+var _leaflet2 = _interopRequireDefault(_leaflet);
+
 var LeafletCustomElement = (function () {
   var _instanceInitializers = {};
   var _instanceInitializers = {};
@@ -55,7 +59,7 @@ var LeafletCustomElement = (function () {
     enumerable: true
   }], [{
     key: 'inject',
-    value: ['Leaflet', _aureliaEventAggregator.EventAggregator, Element],
+    value: [_leaflet2['default'], _aureliaEventAggregator.EventAggregator, Element],
     enumerable: true
   }], _instanceInitializers);
 
