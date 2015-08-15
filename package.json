@@ -71,7 +71,7 @@
       "aurelia-templating-binding": "github:aurelia/templating-binding@^0.14.0",
       "aurelia-templating-resources": "github:aurelia/templating-resources@^0.14.0",
       "aurelia-templating-router": "github:aurelia/templating-router@^0.15.0",
-      "benib/aurelia-leaflet": "github:benib/aurelia-leaflet@^0.1.0",
+      "benib/aurelia-leaflet": "github:benib/aurelia-leaflet@^0.1.1",
       "bootstrap": "github:twbs/bootstrap@^3.3.4",
       "clean-css": "npm:clean-css@^3.3.8",
       "core-js": "npm:core-js@^0.9.4",
