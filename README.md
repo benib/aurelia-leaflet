@@ -9,9 +9,7 @@ Examples: http://benib.github.io/aurelia-leaflet/
 ### Install
 `jspm install github:benib/aurelia-leaflet`
 
-You need to add the plugin to your aurelia configuration and register an instance of Leaflet in the DI Container as 'Leaflet' before you start Aurelia. You can do this by either loading Leaflet from the CDN of your choice:
-
-`<script src="https://cdn.jsdelivr.net/leaflet/0.7.3/leaflet.js"></script>` or by `jspm install leaflet` and then importing it.
+You need to add the plugin to your aurelia configuration like this:
 
 ```js
 export function configure(aurelia) {
@@ -20,11 +18,21 @@ export function configure(aurelia) {
     .developmentLogging()
     .plugin('benib/aurelia-leaflet');
 
-  // if loaded from CDN leaflet defines window.L
-  aurelia.container.registerInstance('Leaflet', window.L);
-
   aurelia.start().then(a => a.setRoot());
 }
+```
+
+You need to include Leaflets CSS somehow, one way is to load it from a CDN:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/0.7.3/leaflet.css">
+```
+
+You want to make sure the map container div gets a height like this:
+```css
+  .leaflet-container {
+    height: 500px;
+  }
 ```
 
 From there on you can use the CustomElement `<leaflet>` like this:
