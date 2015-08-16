@@ -22,7 +22,7 @@ export class GeoJSON {
   };
 
   activate() {
-    this.http.fetch("//benib.github.io/aurelia-leaflet/data/bikepumps.json")
+    this.http.fetch("https://cors-proxy.xiala.net/https://data.stadt-zuerich.ch/storage/f/velopumpstation/velopumpstation.json")
       .then(response => {
         return response.json();
       })
