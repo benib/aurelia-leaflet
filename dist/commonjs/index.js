@@ -18,5 +18,5 @@ function configure(frameworkConfig) {
   var LeafletDefaultImagePath = _ref$LeafletDefaultImagePath === undefined ? 'jspm_packages/github/Leaflet/Leaflet@0.7.7/dist/images' : _ref$LeafletDefaultImagePath;
 
   _leaflet2['default'].Icon.Default.imagePath = LeafletDefaultImagePath;
-  frameworkConfig.globalResources('./leaflet.js');
+  frameworkConfig.globalResources('./leaflet');
 }
