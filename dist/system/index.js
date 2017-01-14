@@ -9,7 +9,7 @@ System.register(['leaflet'], function (_export) {
     var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
     var _ref$LeafletDefaultImagePath = _ref.LeafletDefaultImagePath;
-    var LeafletDefaultImagePath = _ref$LeafletDefaultImagePath === undefined ? 'jspm_packages/github/Leaflet/Leaflet@0.7.7/dist/images' : _ref$LeafletDefaultImagePath;
+    var LeafletDefaultImagePath = _ref$LeafletDefaultImagePath === undefined ? 'jspm_packages/npm/leaflet@1.0.2/dist/images' : _ref$LeafletDefaultImagePath;
 
     Leaflet.Icon.Default.imagePath = LeafletDefaultImagePath;
     frameworkConfig.globalResources('./leaflet');
