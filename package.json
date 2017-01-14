@@ -1,6 +1,6 @@
 {
   "name": "aurelia-leaflet",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "registry": "github",
   "description": "A Leaflet plugin for aurelia",
   "keywords": [
