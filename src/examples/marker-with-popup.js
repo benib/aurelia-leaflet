@@ -1,7 +1,7 @@
 import {inject, useView} from 'aurelia-framework';
 
 @useView('./only-layers.html')
-export class Marker {
+export class MarkerWithPopup {
   // demo
   jsFile = 'marker-with-popup.js';
   htmlFile = 'only-layers.html';

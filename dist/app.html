@@ -1,8 +1,1 @@
-<template>
-  <nav class="nav-bar clearfix">
-    <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" href.bind="row.href">${row.title}</a>
-  </nav>
-  <section class="content">
-    <router-view></router-view>
-  </section>
-</template>
+<template><nav class="nav-bar clearfix"><a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" href.bind="row.href">${row.title}</a></nav><section class="content"><router-view></router-view></section></template>

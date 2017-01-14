@@ -1,21 +1,12 @@
-<template>
-  <section ref="container">
-    <h3>Install</h3>
-    <p>First install aurelia-leaflet package:</p>
-    <pre>
+<template><section ref="container"><h3>Install</h3><p>First install aurelia-leaflet package:</p><pre>
       <code class="bash">
       jspm install github:benib/aurelia-leaflet
       </code>
-    </pre>
-
-    <p>Add the leaflet css to your page. Or use another way to make sure Leaflets CSS is loaded</p>
-    <pre>
+    </pre><p>Add the leaflet css to your page. Or use another way to make sure Leaflets CSS is loaded</p><pre>
       <code class="html">
         &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/leaflet/0.7.3/leaflet.css&quot;&gt;
       </code>
-    </pre>
-    <p>Register the plugin in your aurelia app configuration</p>
-    <pre>
+    </pre><p>Register the plugin in your aurelia app configuration</p><pre>
       <code class="js">
         export function configure(aurelia) {
           aurelia.use
@@ -26,22 +17,14 @@
           aurelia.start().then(a => a.setRoot());
         }
       </code>
-    </pre>
-    <p>make sure you have some CSS to give the map a height somehow. Simplest way is probably this:</p>
-    <pre>
+    </pre><p>make sure you have some CSS to give the map a height somehow. Simplest way is probably this:</p><pre>
       <code class="css">
         .leaflet-container {
           height: 500px;
         }
       </code>
-    </pre>
-    <p>Now you are ready to use it like this</p>
-    <pre>
+    </pre><p>Now you are ready to use it like this</p><pre>
       <code class="html">
         &lt;leaflet&gt;&lt;/leaflet&gt;
       </code>
-    </pre>
-    <p>Go, see <a route-href="route: examples;">some examples over here</a></p>
-    <leaflet></leaflet>
-  </section>
-</template>
+    </pre><p>Go, see <a route-href="route: examples;">some examples over here</a></p><leaflet></leaflet></section></template>

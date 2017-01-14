@@ -1,4 +1,4 @@
-import 'fetch';
+import 'whatwg-fetch';
 
 export class App {
   configureRouter(config, router){

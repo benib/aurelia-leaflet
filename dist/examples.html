@@ -1,12 +1,1 @@
-<template>
-  <div class="clearfix">
-    <div class="content__sidebar">
-      <nav class="sidebar-nav">
-        <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" href.bind="row.href">${row.title}</a>
-      </nav>
-    </div>
-    <main class="content__main">
-      <router-view></router-view>
-    </main>
-  </div>
-</template>
+<template><div class="clearfix"><div class="content__sidebar"><nav class="sidebar-nav"><a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" href.bind="row.href">${row.title}</a></nav></div><main class="content__main"><router-view></router-view></main></div></template>

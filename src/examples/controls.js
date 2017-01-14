@@ -1,10 +1,10 @@
 import {useView} from 'aurelia-framework';
 
-@useView('./full.html')
-export class Simple {
+@useView('./controls.html')
+export class Controls {
   // demo
-  jsFile = 'load-event.js';
-  htmlFile = 'events.html';
+  jsFile = 'controls.js';
+  htmlFile = 'controls.html';
   // demoend
 
   withLayerControl = {

@@ -3,17 +3,12 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 
 @useView('./events.html')
 @inject(EventAggregator)
-export class Simple {
+export class LoadEvent {
   // demo
   jsFile = 'load-event.js';
   htmlFile = 'events.html';
   // demoend
-  leafletMapEvents = ['load'];
-
-  withLayerControl = {
-    position: "topright"
-  }
-
+  
   mapOptions = {
     center: {
       lat: 47.3686498,
@@ -25,6 +20,7 @@ export class Simple {
   hasConsoleOutput = true;
 
   constructor(EventAggregator) {
+    this.leafletMapEvents = ['load'];
     this.eventAggregator = EventAggregator;
     this.eventAggregator.subscribe('aurelia-leaflet', (payload) => {
       console.log(payload);

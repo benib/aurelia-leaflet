@@ -25,7 +25,7 @@ export class ExampleCodeCustomElement {
     this.httpClient.fetch(`./src/examples/${this.jsFile}`)
       .then(response => response.text())
       .then(text => {
-        this.js = text.replace(/\/\/ demo[\s\S]*?\/\/ demoend/g, '');
+        this.jsElement.textContent = text.replace(/\/\/ demo[\s\S]*?\/\/ demoend/g, '');
         this.jsLoadedResolve();
       });
   }
@@ -34,7 +34,7 @@ export class ExampleCodeCustomElement {
     this.httpClient.fetch(`./src/examples/${this.htmlFile}`)
       .then(response => response.text())
       .then(text => {
-        this.html = text.replace(/<!-- demo -->[\s\S]*?<!-- demoend -->/g, '');
+        this.htmlElement.textContent = text.replace(/<!-- demo -->[\s\S]*?<!-- demoend -->/g, '');
         this.htmlLoadedResolve();
       });
   }

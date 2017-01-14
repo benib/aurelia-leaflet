@@ -1,23 +1,33 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
     <title>aurelia-leaflet examples</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/0.7.3/leaflet.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.0.2/leaflet.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.7/styles/default.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
+
   <body>
     <header class="page-header">
       <h1 class="page-header__title">aurelia-leaflet</h1>
       <h2 class="page-header__tagline">The <a href="http://aurelia.io">Aurelia</a> plugin to add <a href="http://leafletjs.com">Leaflet</a> maps to your app</h2>
       <a href="https://github.com/benib/aurelia-leaflet"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     </header>
-    <div aurelia-app="main">
-    </div>
+    <div aurelia-app="main"></div>
     <script src="https://cdn.jsdelivr.net/highlight.js/8.7/highlight.min.js"></script>
+    <!-- The bluebird version is locked at 4.6.3 in the package.json file to keep this from breaking -->
+    <!-- We include bluebird to bypass Edge's very slow Native Promise implementation. The Edge team -->
+    <!-- has fixed the issues with their implementation with these fixes being distributed with the  -->
+    <!-- Windows 10 Anniversary Update on 2 August 2016. Once that update has pushed out, you may    -->
+    <!-- consider removing bluebird from your project and simply using native promises if you do     -->
+    <!-- not need to support Internet Explorer.                                                      -->
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
+    <script src="jspm_packages/npm/bluebird@3.4.1/js/browser/bluebird.min.js"></script>
     <script>
       System.import('aurelia-bootstrapper');
     </script>
-
-<link aurelia-view-bundle="" rel="import" href="./dist/app-bundle.html"></body></html>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 import {inject, useView} from 'aurelia-framework';
 
 @useView('./only-layers.html')
-export class Marker {
+export class FeatureGroup {
   // demo
   jsFile = 'featureGroup.js';
   htmlFile = 'only-layers.html';

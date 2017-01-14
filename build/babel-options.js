@@ -1,11 +1,22 @@
-module.exports = {
-  modules: 'system',
-  moduleIds: false,
-  comments: false,
-  compact: false,
-  stage:2,
-  optional: [
-    "es7.decorators",
-    "es7.classProperties"
-  ]
+var path = require('path');
+var paths = require('./paths');
+
+module.exports = function(modules) {
+  return {
+    filename: '',
+    filenameRelative: '',
+    sourceMap: true,
+    sourceRoot: '',
+    moduleRoot: path.resolve('src').replace(/\\/g, '/'),
+    moduleIds: false,
+    comments: false,
+    compact: false,
+    code: true,
+    presets: [ ['es2015', { loose: true, modules: modules }], 'stage-1'],
+    plugins: [
+      'syntax-flow',
+      'transform-decorators-legacy',
+      'transform-flow-strip-types'
+    ]
+  };
 };
