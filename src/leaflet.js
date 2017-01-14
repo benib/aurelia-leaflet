@@ -73,8 +73,10 @@ export class LeafletCustomElement {
 
   mapEventsChanged(newEvents, oldEvents) {
     this.mapInit.then(() => {
-      for (let eventName of newEvents) {
-        this.map.on(eventName, (e) => this.eventAggregator.publish('aurelia-leaflet', Object.assign(e, {map: this.map})));
+      if (newEvents && newEvents.length) {
+        for (let eventName of newEvents) {
+          this.map.on(eventName, (e) => this.eventAggregator.publish('aurelia-leaflet', Object.assign(e, {map: this.map})));
+        }
       }
       if (oldEvents !== null) {
         for (let removedEvent of oldEvents.filter((e) => newEvents.indexOf(e) === -1)) {

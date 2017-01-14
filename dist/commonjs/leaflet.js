@@ -126,33 +126,34 @@ var LeafletCustomElement = (function () {
       var _this3 = this;
 
       this.mapInit.then(function () {
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
+        if (newEvents && newEvents.length) {
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
 
-        try {
-          for (var _iterator = newEvents[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var eventName = _step.value;
-
-            _this3.map.on(eventName, function (e) {
-              return _this3.eventAggregator.publish('aurelia-leaflet', Object.assign(e, { map: _this3.map }));
-            });
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
           try {
-            if (!_iteratorNormalCompletion && _iterator['return']) {
-              _iterator['return']();
+            for (var _iterator = newEvents[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var eventName = _step.value;
+
+              _this3.map.on(eventName, function (e) {
+                return _this3.eventAggregator.publish('aurelia-leaflet', Object.assign(e, { map: _this3.map }));
+              });
             }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
           } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
+            try {
+              if (!_iteratorNormalCompletion && _iterator['return']) {
+                _iterator['return']();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
             }
           }
         }
-
         if (oldEvents !== null) {
           var _iteratorNormalCompletion2 = true;
           var _didIteratorError2 = false;
