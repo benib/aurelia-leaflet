@@ -25,7 +25,7 @@ export function configure(aurelia) {
 You need to include Leaflets CSS somehow, one way is to load it from a CDN:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/0.7.3/leaflet.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.0.2/leaflet.css">
 ```
 
 You want to make sure the map container div gets a height like this:
@@ -76,7 +76,7 @@ Layers is an object with information about the layers you want on your map. When
     {
       id: 'OSM Tiles',
       type: 'tile',
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       options: {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }
