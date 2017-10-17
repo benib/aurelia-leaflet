@@ -160,12 +160,16 @@ export class LeafletCustomElement {
     };
     if (this.layers.hasOwnProperty('base')) {
       for (let layer of this.layers.base) {
-        layersToAttach.base[this.getLayerId(layer)] = this.layerFactory.getLayer(layer);
+        const id = this.getLayerId(layer);
+        if (this.attachedLayers.base.hasOwnProperty(id)) { continue; }
+        layersToAttach.base[id] = this.layerFactory.getLayer(layer);
       }
     }
     if (this.layers.hasOwnProperty('overlay')) {
       for (let layer of this.layers.overlay) {
-        layersToAttach.overlay[this.getLayerId(layer)] = this.layerFactory.getLayer(layer);
+        const id = this.getLayerId(layer);
+        if (this.attachedLayers.overlay.hasOwnProperty(id)) { continue; }
+        layersToAttach.overlay[id] = this.layerFactory.getLayer(layer);
       }
     }
     this.mapInit.then(() => {
