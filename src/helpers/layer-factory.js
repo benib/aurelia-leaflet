@@ -1,6 +1,6 @@
 import {AureliaLeafletException} from '../aurelia-leaflet-exceptions';
 
-export default class LayerFactory {
+export class LayerFactory {
 
   constructor(Leaflet) {
     this.L = Leaflet;
