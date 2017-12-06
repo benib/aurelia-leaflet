@@ -1,321 +1,272 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+exports.LayerFactory = undefined;
 
 var _aureliaLeafletExceptions = require('../aurelia-leaflet-exceptions');
 
-var LayerFactory = (function () {
+
+
+var LayerFactory = exports.LayerFactory = function () {
   function LayerFactory(Leaflet) {
-    _classCallCheck(this, LayerFactory);
+    
 
     this.L = Leaflet;
   }
 
-  _createClass(LayerFactory, [{
-    key: 'getLayer',
-    value: function getLayer(layer) {
-      if (!layer.hasOwnProperty('type')) {
-        layer.type = 'tile';
-      }
+  LayerFactory.prototype.getLayer = function getLayer(layer) {
+    if (!layer.hasOwnProperty('type')) {
+      layer.type = 'tile';
+    }
 
-      var instance = undefined;
+    var instance = void 0;
 
-      switch (layer.type) {
-        case 'marker':
-          instance = this.getMarker(layer);
-          break;
-        case 'popup':
-          instance = this.getPopup(layer);
-          break;
-        case 'tile':
-          instance = this.getTile(layer);
-          break;
-        case 'wms':
-          instance = this.getWMS(layer);
-          break;
-        case 'canvas':
-          instance = this.getCanvas(layer);
-          break;
-        case 'imageOverlay':
-          instance = this.getImageOverlay(layer);
-          break;
-        case 'polyline':
-          instance = this.getPolyline(layer);
-          break;
-        case 'multiPolyline':
-          instance = this.getMultiPolyline(layer);
-          break;
-        case 'polygone':
-          instance = this.getPolygone(layer);
-          break;
-        case 'multiPolygone':
-          instance = this.getMultiPolygone(layer);
-          break;
-        case 'rectangle':
-          instance = this.getRectangle(layer);
-          break;
-        case 'circle':
-          instance = this.getCircle(layer);
-          break;
-        case 'circleMarker':
-          instance = this.getCircleMarker(layer);
-          break;
-        case 'group':
-          instance = this.getLayerGroup(layer);
-          break;
-        case 'featureGroup':
-          instance = this.getFeatureGroup(layer);
-          break;
-        case 'geoJSON':
-          instance = this.getGeoJson(layer);
-          break;
-        default:
-          throw new _aureliaLeafletExceptions.AureliaLeafletException('Layer type ' + layer.type + ' not implemented');
-      }
+    switch (layer.type) {
+      case 'marker':
+        instance = this.getMarker(layer);
+        break;
+      case 'popup':
+        instance = this.getPopup(layer);
+        break;
+      case 'tile':
+        instance = this.getTile(layer);
+        break;
+      case 'wms':
+        instance = this.getWMS(layer);
+        break;
+      case 'canvas':
+        instance = this.getCanvas(layer);
+        break;
+      case 'imageOverlay':
+        instance = this.getImageOverlay(layer);
+        break;
+      case 'polyline':
+        instance = this.getPolyline(layer);
+        break;
+      case 'multiPolyline':
+        instance = this.getMultiPolyline(layer);
+        break;
+      case 'polygone':
+        instance = this.getPolygone(layer);
+        break;
+      case 'multiPolygone':
+        instance = this.getMultiPolygone(layer);
+        break;
+      case 'rectangle':
+        instance = this.getRectangle(layer);
+        break;
+      case 'circle':
+        instance = this.getCircle(layer);
+        break;
+      case 'circleMarker':
+        instance = this.getCircleMarker(layer);
+        break;
+      case 'group':
+        instance = this.getLayerGroup(layer);
+        break;
+      case 'featureGroup':
+        instance = this.getFeatureGroup(layer);
+        break;
+      case 'geoJSON':
+        instance = this.getGeoJson(layer);
+        break;
+      default:
+        throw new _aureliaLeafletExceptions.AureliaLeafletException('Layer type ' + layer.type + ' not implemented');
+    }
 
-      if (typeof layer.initCallback === 'function') {
-        layer.initCallback(instance);
-      }
+    if (typeof layer.initCallback === 'function') {
+      layer.initCallback(instance);
+    }
 
-      if (layer.hasOwnProperty('events')) {
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
+    if (layer.hasOwnProperty('events')) {
+      for (var _iterator = layer.events, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+        var _ref;
 
-        try {
-          for (var _iterator = layer.events[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var e = _step.value;
+        if (_isArray) {
+          if (_i >= _iterator.length) break;
+          _ref = _iterator[_i++];
+        } else {
+          _i = _iterator.next();
+          if (_i.done) break;
+          _ref = _i.value;
+        }
 
-            if (typeof instance.on === 'function') {
-              instance.on(e.name, e.callback);
-            }
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator['return']) {
-              _iterator['return']();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
+        var e = _ref;
+
+        if (typeof instance.on === 'function') {
+          instance.on(e.name, e.callback);
         }
       }
+    }
 
-      return instance;
-    }
-  }, {
-    key: 'getMarker',
-    value: function getMarker(layer) {
-      if (!layer.hasOwnProperty('latLng')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLng given for layer.type "marker"');
-      }
-      var marker = this.L.marker(layer.latLng, layer.options);
-      if (layer.hasOwnProperty('popupContent')) {
-        marker.bindPopup(layer.popupContent).openPopup();
-      }
-      return marker;
-    }
-  }, {
-    key: 'getPopup',
-    value: function getPopup(layer) {
-      var popup = this.L.popup(layer.options);
-      if (layer.hasOwnProperty('content')) {
-        popup.setContent(layer.content);
-      }
-      if (layer.hasOwnProperty('latLng')) {
-        popup.setLatLng(layer.latLng);
-      }
-      return popup;
-    }
-  }, {
-    key: 'getTile',
-    value: function getTile(layer) {
-      if (!layer.hasOwnProperty('url')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No url given for layer.type "tile"');
-      }
-      return this.L.tileLayer(layer.url, layer.options);
-    }
-  }, {
-    key: 'getWMS',
-    value: function getWMS(layer) {
-      if (!layer.hasOwnProperty('url')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No url given for layer.type "wms"');
-      }
-      return this.L.tileLayer.wms(layer.url, layer.options);
-    }
-  }, {
-    key: 'getCanvas',
-    value: function getCanvas(layer) {
-      var l = this.L.tileLayer.canvas(layer.options);
-      if (layer.hasOwnProperty('drawTile')) {
-        l.drawTile = layer.drawTile;
-      }
-      if (layer.hasOwnProperty('tileDrawn')) {
-        l.tileDrawn = layer.tileDrawn;
-      }
-      return l;
-    }
-  }, {
-    key: 'getImageOverlay',
-    value: function getImageOverlay(layer) {
-      if (!layer.hasOwnProperty('url')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No url given for layer.type "imageOverlay"');
-      }
-      if (!layer.hasOwnProperty('imageBounds')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No imageBounds given for layer.type "imageOverlay"');
-      }
-      return this.L.imageOverlay(layer.url, layer.imageBounds, layer.options);
-    }
-  }, {
-    key: 'getPolyline',
-    value: function getPolyline(layer) {
-      if (!layer.hasOwnProperty('latLngs')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLngs given for layer.type "polyline"');
-      }
-      return this.L.polyline(layer.latlngs, layer.options);
-    }
-  }, {
-    key: 'getMultiPolyline',
-    value: function getMultiPolyline(layer) {
-      if (!layer.hasOwnProperty('latLngs')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLngs given for layer.type "multiPolyline"');
-      }
-      return this.L.multiPolyline(layer.latlngs, layer.options);
-    }
-  }, {
-    key: 'getPolygone',
-    value: function getPolygone(layer) {
-      if (!layer.hasOwnProperty('latLngs')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLngs given for layer.type "polygone"');
-      }
-      return this.L.polygone(layer.latlngs, layer.options);
-    }
-  }, {
-    key: 'getMultiPolygone',
-    value: function getMultiPolygone(layer) {
-      if (!layer.hasOwnProperty('latLngs')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLngs given for layer.type "multiPolygone"');
-      }
-      return this.L.multiPolygone(layer.latlngs, layer.options);
-    }
-  }, {
-    key: 'getRectangle',
-    value: function getRectangle(layer) {
-      if (!layer.hasOwnProperty('bounds')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No bounds given for layer.type "rectangle"');
-      }
-      return this.L.rectangle(layer.bounds, layer.options);
-    }
-  }, {
-    key: 'getCircle',
-    value: function getCircle(layer) {
-      if (!layer.hasOwnProperty('latLng')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLng given for layer.type "circle"');
-      }
-      if (!layer.hasOwnProperty('radius')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No radius given for layer.type "circle"');
-      }
-      return this.L.circle(layer.latLng, layer.radius, layer.options);
-    }
-  }, {
-    key: 'getCircleMarker',
-    value: function getCircleMarker(layer) {
-      if (!layer.hasOwnProperty('latLng')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLng given for layer.type "circleMarker"');
-      }
-      return this.L.circleMarker(layer.latLng, layer.options);
-    }
-  }, {
-    key: 'getLayerGroup',
-    value: function getLayerGroup(layer) {
-      if (!layer.hasOwnProperty('layers')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No layers given for layer.type "group"');
-      }
-      var layers = [];
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
+    return instance;
+  };
 
-      try {
-        for (var _iterator2 = layer.layers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var l = _step2.value;
+  LayerFactory.prototype.getMarker = function getMarker(layer) {
+    if (!layer.hasOwnProperty('latLng')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLng given for layer.type "marker"');
+    }
+    var marker = this.L.marker(layer.latLng, layer.options);
+    if (layer.hasOwnProperty('popupContent')) {
+      marker.bindPopup(layer.popupContent).openPopup();
+    }
+    return marker;
+  };
 
-          layers.push(this.getLayer(l));
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2['return']) {
-            _iterator2['return']();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
+  LayerFactory.prototype.getPopup = function getPopup(layer) {
+    var popup = this.L.popup(layer.options);
+    if (layer.hasOwnProperty('content')) {
+      popup.setContent(layer.content);
+    }
+    if (layer.hasOwnProperty('latLng')) {
+      popup.setLatLng(layer.latLng);
+    }
+    return popup;
+  };
+
+  LayerFactory.prototype.getTile = function getTile(layer) {
+    if (!layer.hasOwnProperty('url')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No url given for layer.type "tile"');
+    }
+    return this.L.tileLayer(layer.url, layer.options);
+  };
+
+  LayerFactory.prototype.getWMS = function getWMS(layer) {
+    if (!layer.hasOwnProperty('url')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No url given for layer.type "wms"');
+    }
+    return this.L.tileLayer.wms(layer.url, layer.options);
+  };
+
+  LayerFactory.prototype.getCanvas = function getCanvas(layer) {
+    var l = this.L.tileLayer.canvas(layer.options);
+    if (layer.hasOwnProperty('drawTile')) {
+      l.drawTile = layer.drawTile;
+    }
+    if (layer.hasOwnProperty('tileDrawn')) {
+      l.tileDrawn = layer.tileDrawn;
+    }
+    return l;
+  };
+
+  LayerFactory.prototype.getImageOverlay = function getImageOverlay(layer) {
+    if (!layer.hasOwnProperty('url')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No url given for layer.type "imageOverlay"');
+    }
+    if (!layer.hasOwnProperty('imageBounds')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No imageBounds given for layer.type "imageOverlay"');
+    }
+    return this.L.imageOverlay(layer.url, layer.imageBounds, layer.options);
+  };
+
+  LayerFactory.prototype.getPolyline = function getPolyline(layer) {
+    if (!layer.hasOwnProperty('latLngs')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLngs given for layer.type "polyline"');
+    }
+    return this.L.polyline(layer.latlngs, layer.options);
+  };
+
+  LayerFactory.prototype.getMultiPolyline = function getMultiPolyline(layer) {
+    if (!layer.hasOwnProperty('latLngs')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLngs given for layer.type "multiPolyline"');
+    }
+    return this.L.multiPolyline(layer.latlngs, layer.options);
+  };
+
+  LayerFactory.prototype.getPolygone = function getPolygone(layer) {
+    if (!layer.hasOwnProperty('latLngs')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLngs given for layer.type "polygone"');
+    }
+    return this.L.polygone(layer.latlngs, layer.options);
+  };
+
+  LayerFactory.prototype.getMultiPolygone = function getMultiPolygone(layer) {
+    if (!layer.hasOwnProperty('latLngs')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLngs given for layer.type "multiPolygone"');
+    }
+    return this.L.multiPolygone(layer.latlngs, layer.options);
+  };
+
+  LayerFactory.prototype.getRectangle = function getRectangle(layer) {
+    if (!layer.hasOwnProperty('bounds')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No bounds given for layer.type "rectangle"');
+    }
+    return this.L.rectangle(layer.bounds, layer.options);
+  };
+
+  LayerFactory.prototype.getCircle = function getCircle(layer) {
+    if (!layer.hasOwnProperty('latLng')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLng given for layer.type "circle"');
+    }
+    if (!layer.hasOwnProperty('radius')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No radius given for layer.type "circle"');
+    }
+    return this.L.circle(layer.latLng, layer.radius, layer.options);
+  };
+
+  LayerFactory.prototype.getCircleMarker = function getCircleMarker(layer) {
+    if (!layer.hasOwnProperty('latLng')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No latLng given for layer.type "circleMarker"');
+    }
+    return this.L.circleMarker(layer.latLng, layer.options);
+  };
+
+  LayerFactory.prototype.getLayerGroup = function getLayerGroup(layer) {
+    if (!layer.hasOwnProperty('layers')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No layers given for layer.type "group"');
+    }
+    var layers = [];
+    for (var _iterator2 = layer.layers, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+      var _ref2;
+
+      if (_isArray2) {
+        if (_i2 >= _iterator2.length) break;
+        _ref2 = _iterator2[_i2++];
+      } else {
+        _i2 = _iterator2.next();
+        if (_i2.done) break;
+        _ref2 = _i2.value;
       }
 
-      return this.L.layerGroup(layers);
+      var l = _ref2;
+
+      layers.push(this.getLayer(l));
     }
-  }, {
-    key: 'getFeatureGroup',
-    value: function getFeatureGroup(layer) {
-      if (!layer.hasOwnProperty('layers')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No layers given for layer.type "featureGroup"');
-      }
-      var layers = [];
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
+    return this.L.layerGroup(layers);
+  };
 
-      try {
-        for (var _iterator3 = layer.layers[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var l = _step3.value;
+  LayerFactory.prototype.getFeatureGroup = function getFeatureGroup(layer) {
+    if (!layer.hasOwnProperty('layers')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No layers given for layer.type "featureGroup"');
+    }
+    var layers = [];
+    for (var _iterator3 = layer.layers, _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+      var _ref3;
 
-          layers.push(this.getLayer(l));
-        }
-      } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion3 && _iterator3['return']) {
-            _iterator3['return']();
-          }
-        } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
-          }
-        }
+      if (_isArray3) {
+        if (_i3 >= _iterator3.length) break;
+        _ref3 = _iterator3[_i3++];
+      } else {
+        _i3 = _iterator3.next();
+        if (_i3.done) break;
+        _ref3 = _i3.value;
       }
 
-      return this.L.featureGroup(layers);
+      var l = _ref3;
+
+      layers.push(this.getLayer(l));
     }
-  }, {
-    key: 'getGeoJson',
-    value: function getGeoJson(layer) {
-      if (!layer.hasOwnProperty('data')) {
-        throw new _aureliaLeafletExceptions.AureliaLeafletException('No data property given for layer.type "geoJSON"');
-      }
-      return this.L.geoJson(layer.data, layer.options);
+    return this.L.featureGroup(layers);
+  };
+
+  LayerFactory.prototype.getGeoJson = function getGeoJson(layer) {
+    if (!layer.hasOwnProperty('data')) {
+      throw new _aureliaLeafletExceptions.AureliaLeafletException('No data property given for layer.type "geoJSON"');
     }
-  }]);
+    return this.L.geoJson(layer.data, layer.options);
+  };
 
   return LayerFactory;
-})();
-
-exports['default'] = LayerFactory;
-module.exports = exports['default'];
+}();

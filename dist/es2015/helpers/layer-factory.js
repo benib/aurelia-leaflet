@@ -1,6 +1,6 @@
-import {AureliaLeafletException} from '../aurelia-leaflet-exceptions';
+import { AureliaLeafletException } from '../aurelia-leaflet-exceptions';
 
-export class LayerFactory {
+export let LayerFactory = class LayerFactory {
 
   constructor(Leaflet) {
     this.L = Leaflet;
@@ -218,4 +218,4 @@ export class LayerFactory {
     }
     return this.L.geoJson(layer.data, layer.options);
   }
-}
+};

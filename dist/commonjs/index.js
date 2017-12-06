@@ -1,22 +1,17 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.configure = configure;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+var _aureliaLeaflet = require('./aurelia-leaflet');
 
-var _leaflet = require('leaflet');
-
-var _leaflet2 = _interopRequireDefault(_leaflet);
-
-function configure(frameworkConfig) {
-  var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-  var _ref$LeafletDefaultImagePath = _ref.LeafletDefaultImagePath;
-  var LeafletDefaultImagePath = _ref$LeafletDefaultImagePath === undefined ? 'jspm_packages/npm/leaflet@1.0.2/dist/images/' : _ref$LeafletDefaultImagePath;
-
-  _leaflet2['default'].Icon.Default.imagePath = LeafletDefaultImagePath;
-  frameworkConfig.globalResources('./leaflet');
-}
+Object.keys(_aureliaLeaflet).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _aureliaLeaflet[key];
+    }
+  });
+});

@@ -1,23 +1,17 @@
-System.register(['leaflet'], function (_export) {
-  'use strict';
+'use strict';
 
-  var Leaflet;
-
-  _export('configure', configure);
-
-  function configure(frameworkConfig) {
-    var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-    var _ref$LeafletDefaultImagePath = _ref.LeafletDefaultImagePath;
-    var LeafletDefaultImagePath = _ref$LeafletDefaultImagePath === undefined ? 'jspm_packages/npm/leaflet@1.0.2/dist/images/' : _ref$LeafletDefaultImagePath;
-
-    Leaflet.Icon.Default.imagePath = LeafletDefaultImagePath;
-    frameworkConfig.globalResources('./leaflet');
-  }
+System.register(['./aurelia-leaflet'], function (_export, _context) {
+  "use strict";
 
   return {
-    setters: [function (_leaflet) {
-      Leaflet = _leaflet['default'];
+    setters: [function (_aureliaLeaflet) {
+      var _exportObj = {};
+
+      for (var _key in _aureliaLeaflet) {
+        if (_key !== "default" && _key !== "__esModule") _exportObj[_key] = _aureliaLeaflet[_key];
+      }
+
+      _export(_exportObj);
     }],
     execute: function () {}
   };

@@ -1,32 +1,76 @@
-import {customElement, useView, bindable} from 'aurelia-framework';
-import {EventAggregator} from 'aurelia-event-aggregator';
-import {AureliaLeafletException} from './aurelia-leaflet-exceptions';
-import {defaultMapOptions, defaultLayers} from './leaflet-defaults';
-import LayerFactory from './helpers/layer-factory';
-import Leaflet from 'leaflet';
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _class3, _temp;
 
-@customElement('leaflet')
-@useView('./leaflet.html')
-export class LeafletCustomElement {
-  static inject = [Leaflet, EventAggregator, Element];
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  Object.defineProperty(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
 
-  @bindable layers
-  @bindable mapEvents
-  @bindable mapOptions
-  @bindable withLayerControl
-  @bindable withScaleControl
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
 
-  map
-
-  attachedLayers = {
-    base: {},
-    overlay: {}
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
   }
 
-  constructor(Leaflet, EventAggregator, Element) {
-    this.L               = Leaflet;
-    this.eventAggregator = EventAggregator;
-    this.element         = Element;
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper(descriptor, context) {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
+
+import { inject, customElement, useView, bindable } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
+import { AureliaLeafletException } from './aurelia-leaflet-exceptions';
+import { defaultMapOptions, defaultLayers } from './leaflet-defaults';
+import { LayerFactory } from './helpers/layer-factory';
+import * as Leaflet from 'leaflet';
+
+export let LeafletCustomElement = (_dec = customElement('leaflet'), _dec2 = useView('./leaflet.html'), _dec(_class = _dec2(_class = (_class2 = (_temp = _class3 = class LeafletCustomElement {
+
+  constructor(eventAggregator, element) {
+    _initDefineProp(this, 'layers', _descriptor, this);
+
+    _initDefineProp(this, 'mapEvents', _descriptor2, this);
+
+    _initDefineProp(this, 'mapOptions', _descriptor3, this);
+
+    _initDefineProp(this, 'withLayerControl', _descriptor4, this);
+
+    _initDefineProp(this, 'withScaleControl', _descriptor5, this);
+
+    this.attachedLayers = {
+      base: {},
+      overlay: {}
+    };
+
+    this.L = Leaflet;
+    this.eventAggregator = eventAggregator;
+    this.element = element;
 
     this.layerFactory = new LayerFactory(this.L);
 
@@ -41,7 +85,7 @@ export class LeafletCustomElement {
     });
 
     this.mapOptions = defaultMapOptions;
-    this.layers     = defaultLayers;
+    this.layers = defaultLayers;
   }
 
   layersChanged(newLayers, oldLayers) {
@@ -55,7 +99,6 @@ export class LeafletCustomElement {
   mapOptionsChanged(newOptions, oldOptions) {
     this.mapOptions = Object.assign(defaultMapOptions, newOptions);
 
-    // some options can get set on the map object after init
     this.mapInit.then(() => {
       if (oldOptions) {
         if (this.mapOptions.center !== oldOptions.center) {
@@ -75,11 +118,11 @@ export class LeafletCustomElement {
     this.mapInit.then(() => {
       if (newEvents && newEvents.length) {
         for (let eventName of newEvents) {
-          this.map.on(eventName, (e) => this.eventAggregator.publish('aurelia-leaflet', Object.assign(e, {map: this.map})));
+          this.map.on(eventName, e => this.eventAggregator.publish('aurelia-leaflet', Object.assign(e, { map: this.map })));
         }
       }
       if (oldEvents !== null) {
-        for (let removedEvent of oldEvents.filter((e) => newEvents.indexOf(e) === -1)) {
+        for (let removedEvent of oldEvents.filter(e => newEvents.indexOf(e) === -1)) {
           this.map.off(removedEvent);
         }
       }
@@ -125,8 +168,6 @@ export class LeafletCustomElement {
 
   attached() {
     return new Promise((resolve, reject) => {
-      // remove the center option before contructing the map to have a chance to bind to the "load" event
-      // first. The "load" event on the map gets fired after center and zoom are set for the first time.
       var center = this.mapOptions.center;
       delete this.mapOptions.center;
       if (!this.map) {
@@ -182,7 +223,7 @@ export class LeafletCustomElement {
     if (!oldLayers || !oldLayers.length) {
       return;
     }
-    let removedLayers = oldLayers.filter((oldLayer) => {
+    let removedLayers = oldLayers.filter(oldLayer => {
       let removed = true;
       if (!this.layers.hasOwnProperty(type)) {
         return true;
@@ -214,4 +255,19 @@ export class LeafletCustomElement {
     return id;
   }
 
-}
+}, _class3.inject = [EventAggregator, Element], _temp), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'layers', [bindable], {
+  enumerable: true,
+  initializer: null
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'mapEvents', [bindable], {
+  enumerable: true,
+  initializer: null
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'mapOptions', [bindable], {
+  enumerable: true,
+  initializer: null
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'withLayerControl', [bindable], {
+  enumerable: true,
+  initializer: null
+}), _descriptor5 = _applyDecoratedDescriptor(_class2.prototype, 'withScaleControl', [bindable], {
+  enumerable: true,
+  initializer: null
+})), _class2)) || _class) || _class);
