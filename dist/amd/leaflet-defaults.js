@@ -16,7 +16,7 @@ define(['exports'], function (exports) {
     base: [{
       id: 'OSM Tiles',
       type: 'tile',
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       options: {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }
