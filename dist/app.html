@@ -1,1 +1,1 @@
-<template><nav class="nav-bar clearfix"><a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" href.bind="row.href">${row.title}</a></nav><section class="content"><router-view></router-view></section></template>
+<template><require from="../jspm_packages/npm/leaflet@1.0.2/dist/leaflet.css"></require><nav class="nav-bar clearfix"><a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}" href.bind="row.href">${row.title}</a></nav><section class="content"><router-view></router-view></section></template>
